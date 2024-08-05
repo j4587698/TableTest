@@ -1,0 +1,24 @@
+﻿@page "/"
+@inject DialogService DialogService
+
+@attribute [TabItemOption(Text = "Index", Closable = false)]
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?"/>
+
+<Button Text="点我" OnClick="Show"></Button>
+
+@code {
+    private async Task Show()
+    {
+        await DialogService.Show(new DialogOption()
+        {
+            BodyTemplate = BootstrapDynamicComponent.CreateComponent<TableDemo>().Render()
+        });
+    }
+}
